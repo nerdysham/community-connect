@@ -16,21 +16,19 @@ export class FeedComponent {
 
   constructor(private postService: PostService) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    let posts = await this.postService.getPosts('fremont');
+    console.log(posts);
 
-    this.postService.getPosts('fremont').then((posts: any) => {
-      console.log(posts);
+    let keys = Object.keys(posts);
+    let postInfos: Post[] = [];
 
-      let keys = Object.keys(posts);
-      let postInfos: Post[] = [];
+    for (let key in keys) {
+      postInfos.push(posts[key]);
+    }
 
-      for (let key in keys) {
-        postInfos.push(posts[key]);
-      }
-
-      this.posts = postInfos;
-    });
+    this.posts = postInfos;
   }
 }

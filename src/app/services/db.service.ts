@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { child, get, getDatabase, ref } from 'firebase/database';
+import { child, get, getDatabase, ref, set } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -26,22 +26,26 @@ export class DbService {
 
   constructor() {}
 
-  getData(dataUrl: string) {
+  getData(dataPath: string): Promise<any> {
     return new Promise((resolve, reject) => {
       const dbRef = ref(getDatabase());
-      get(child(dbRef, dataUrl))
+      get(child(dbRef, dataPath))
         .then((snapshot) => {
           if (snapshot.exists()) {
             resolve(snapshot.val());
           } else {
-            console.log('No data available');
-            reject(null);
+            resolve(null);
           }
         })
         .catch((error) => {
           console.error(error);
-          throw error;
+          reject(error);
         });
     });
+  }
+
+  setData(dataPath: string, dataValue: Object) {
+    const db = getDatabase();
+    set(ref(db, dataPath), dataValue);
   }
 }
