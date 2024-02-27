@@ -1,0 +1,13 @@
+<mat-card class="max-w-xl mx-auto">
+  <mat-card-header>
+    <div mat-card-avatar class="profile-image bg-cover"></div>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>{{ post.username }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{ post.imageUrl }}" *ngIf="post.imageUrl" />
+  <mat-card-content>
+    <p>
+      {{ post.caption }}
+    </p>
+  </mat-card-content>
+</mat-card>

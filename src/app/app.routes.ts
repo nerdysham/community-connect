@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
-import { FeedComponent } from './feed/feed.component';
-import { LandingComponent } from './landing/landing.component';
-import { RecommendationsComponent } from './recommendations/recommendations.component';
-import { SkillsComponent } from './skills/skills.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { SkillsComponent } from './components/skills/skills.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
